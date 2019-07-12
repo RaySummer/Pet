@@ -22,3 +22,4 @@ flutter packages pub run build_runner watch   //
 
 ### export PATH=`pwd`/flutter/bin:$PATH
 ### export PATH=/Users/yahong/StudioProjects/flutter/bin:$PATH# my_first_app
+# my_first_app
