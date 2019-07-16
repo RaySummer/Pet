@@ -26,8 +26,8 @@ dependencies:
   flutter_inappbrowser: 1.2.1
   flutter_cache_manager: ^0.3.0
   photo_view: ^0.3.3
-  flutter_svg:
   image_gallery_saver: ^1.1.0
+  permission_handler: ^3.0.1
 
 dev_dependencies:
   flutter_test:

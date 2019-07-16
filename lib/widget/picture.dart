@@ -1,8 +1,15 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter/services.dart';
 import 'package:pet/models/models.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:flutter/rendering.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'dart:ui' as ui;
+import 'package:permission_handler/permission_handler.dart';
+
 
 class GalleryExample extends StatelessWidget {
   void open(BuildContext context, final int index) {
@@ -82,16 +89,45 @@ class GalleryPhotoViewWrapper extends StatefulWidget {
 
 class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
   int currentIndex;
+  GlobalKey _globalKey = GlobalKey();
+
   @override
   void initState() {
     currentIndex = widget.initialIndex;
     super.initState();
+    var permission = PermissionHandler().checkPermissionStatus(PermissionGroup.storage);
+    print("permission status is " + permission.toString());
+    PermissionHandler().requestPermissions(<PermissionGroup>[
+      PermissionGroup.storage, // 在这里添加需要的权限
+    ]);
   }
+
+
 
   void onPageChanged(int index) {
     setState(() {
       currentIndex = index;
     });
+  }
+
+  void _saved(List<MediaModel> list, int index) async {
+    RenderRepaintBoundary boundary =
+    _globalKey.currentContext.findRenderObject();
+    ui.Image image = await boundary.toImage();
+    ByteData byteData =
+    await image.toByteData(format: ui.ImageByteFormat.png);
+//    final result = await ImageGallerySaver.save(byteData.buffer.asUint8List());
+
+    Uri uri = Uri();
+
+    ByteData bytes = await NetworkAssetBundle(uri).load(list[index].url);
+
+    final result = await ImageGallerySaver.save(bytes.buffer.asUint8List());
+
+    print(result);
+    if(result){
+    }else{
+    }
   }
 
   @override
@@ -100,34 +136,40 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
       onTap: (){
         Navigator.pop(context);
       },
+      onLongPress: (){
+        _saved(galleryItems,currentIndex);
+      },
       child: Scaffold(
-        body: Container(
-            decoration: widget.backgroundDecoration,
-            constraints: BoxConstraints.expand(
-              height: MediaQuery.of(context).size.height,
-            ),
-            child: Stack(
-              alignment: Alignment.bottomRight,
-              children: <Widget>[
-                PhotoViewGallery.builder(
-                  scrollPhysics: const BouncingScrollPhysics(),
-                  builder: _buildItem,
-                  itemCount: galleryItems.length,
-                  loadingChild: widget.loadingChild,
-                  backgroundDecoration: widget.backgroundDecoration,
-                  pageController: widget.pageController,
-                  onPageChanged: onPageChanged,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    "Image ${currentIndex + 1}",
-                    style: const TextStyle(
-                        color: Colors.white, fontSize: 17.0, decoration: null),
+        body: RepaintBoundary(
+          key: _globalKey,
+          child: Container(
+              decoration: widget.backgroundDecoration,
+              constraints: BoxConstraints.expand(
+                height: MediaQuery.of(context).size.height,
+              ),
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: <Widget>[
+                  PhotoViewGallery.builder(
+                    scrollPhysics: const BouncingScrollPhysics(),
+                    builder: _buildItem,
+                    itemCount: galleryItems.length,
+                    loadingChild: widget.loadingChild,
+                    backgroundDecoration: widget.backgroundDecoration,
+                    pageController: widget.pageController,
+                    onPageChanged: onPageChanged,
                   ),
-                )
-              ],
-            )),
+                  Container(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      "Image ${currentIndex + 1}",
+                      style: const TextStyle(
+                          color: Colors.white, fontSize: 17.0, decoration: null),
+                    ),
+                  )
+                ],
+              )),
+        ),
       ),
     );
   }
@@ -153,7 +195,7 @@ class GalleryExampleItem {
 }
 
 class GalleryExampleItemThumbnail extends StatelessWidget {
-  const GalleryExampleItemThumbnail(
+  GalleryExampleItemThumbnail(
       {Key key, this.galleryExampleItem, this.onTap})
       : super(key: key);
 
@@ -161,21 +203,22 @@ class GalleryExampleItemThumbnail extends StatelessWidget {
 
   final GestureTapCallback onTap;
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 5.0),
         child: GestureDetector(
           onTap: onTap,
-          onLongPress: (){
-
-          },
           child: Hero(
             tag: galleryExampleItem.id,
             child: Image.network(galleryExampleItem.url, height: 80.0),
           ),
         ));
   }
+
 }
 
 List<MediaModel> galleryItems = <MediaModel>[
