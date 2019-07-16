@@ -221,6 +221,11 @@ class CircleBloC extends BLoCBase {
     await getData(status);
   }
 
+  refreshDetail(String code) async {
+
+  }
+
+
   refreshData(String status) async {
     //重置信息
     _dataMap.clear();

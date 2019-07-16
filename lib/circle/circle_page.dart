@@ -4,7 +4,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pet/bloc/bloc_provider.dart';
 import 'package:pet/bloc/circle/circle_bloc.dart';
+import 'package:pet/circle/circle_detail_for_images.dart';
 import 'package:pet/models/circle/circle.dart';
+
+import 'circle_detail_page.dart';
 
 class CirclePage extends StatefulWidget {
   AsyncSnapshot<List<CircleModel>> snapshot;
@@ -62,14 +65,21 @@ class _CirclePageState extends State<CirclePage> {
   }
 
   Widget _buildItems(BuildContext context, CircleModel model, int index){
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          _buildItemImage(context,model,index),
-          _buildItemTitle(context,model),
-          _buildItemAuthor(context,model),
-        ],
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(
+          context,MaterialPageRoute(builder: (context) => CircleDetailPage(model: model,)),
+        );
+      },
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            _buildItemImage(context,model,index),
+            _buildItemTitle(context,model),
+            _buildItemAuthor(context,model),
+          ],
+        ),
       ),
     );
   }

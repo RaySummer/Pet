@@ -54,7 +54,7 @@ class _HelperPageState extends State<HelperPage> {
           itemBuilder: _swiperBuilder,
           itemCount: 4,
 //          viewportFraction: 0.8,
-          itemWidth: MediaQuery.of(context).size.width-30,
+          itemWidth: MediaQuery.of(context).size.width,
           itemHeight: 200.0,
           layout: SwiperLayout.STACK,
 //          scale: 0.9,

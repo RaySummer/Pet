@@ -29,6 +29,12 @@ class CircleModel extends ItemModel {
   //点赞人数
   int praiseCount;
 
+  //链接地址
+  String htmlUrl;
+
+  //文章类型
+  String essayType;
+
   //发布日期
   @JsonKey(name: "modifiedtime", fromJson: _dateTimefromMilliseconds)
   DateTime sendDate;
@@ -53,6 +59,8 @@ class CircleModel extends ItemModel {
     this.userName,
     this.userPic,
     this.praiseCount,
+    this.essayType,
+    this.htmlUrl,
   });
 
   factory CircleModel.fromJson(Map<String, dynamic> json) =>

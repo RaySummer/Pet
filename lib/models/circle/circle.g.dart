@@ -25,7 +25,9 @@ CircleModel _$CircleModelFromJson(Map<String, dynamic> json) {
       forwardCount: json['forwardCount'] as int,
       userName: json['userName'] as String,
       userPic: json['userPic'] as String,
-      praiseCount: json['praiseCount'] as int)
+      praiseCount: json['praiseCount'] as int,
+      essayType: json['essayType'] as String,
+      htmlUrl: json['htmlUrl'] as String)
     ..id = json['id'] as int;
 }
 
@@ -40,6 +42,8 @@ Map<String, dynamic> _$CircleModelToJson(CircleModel instance) =>
       'commentCount': instance.commentCount,
       'forwardCount': instance.forwardCount,
       'praiseCount': instance.praiseCount,
+      'htmlUrl': instance.htmlUrl,
+      'essayType': instance.essayType,
       'modifiedtime': instance.sendDate?.toIso8601String(),
       'mediaModel': instance.mediaModel == null
           ? null

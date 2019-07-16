@@ -1,7 +1,7 @@
 name: pet
 description: com.my.app.pet
 
-version: 1.0.0+1
+version: 1.0.8+1
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -25,6 +25,9 @@ dependencies:
   flutter_staggered_grid_view: ^0.2.7
   flutter_inappbrowser: 1.2.1
   flutter_cache_manager: ^0.3.0
+  photo_view: ^0.3.3
+  flutter_svg:
+  image_gallery_saver: ^1.1.0
 
 dev_dependencies:
   flutter_test:
