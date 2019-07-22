@@ -11,7 +11,7 @@ class WebViewPage extends StatefulWidget {
 
   CircleModel model;
 
-  WebViewPage({this.url, this.title,this.model});
+  WebViewPage({this.url, this.title, this.model});
 
   _WebViewPageState createState() => _WebViewPageState();
 }
@@ -41,44 +41,37 @@ class _WebViewPageState extends State<WebViewPage> {
         backgroundColor: Colors.white,
         title: Text(
           '${widget.title}',
-          style: TextStyle(
-              color: Colors.black54
-          ),
+          style: TextStyle(color: Colors.black54),
         ),
         automaticallyImplyLeading: true,
         elevation: 0.5,
       ),
       body: Container(
-        child: ListView(
+        child: Column(
           children: <Widget>[
-            Column(
-            children: <Widget>[
-            _buildItemAuthor(context,widget.model),
-        (progress != 1.0) ? LinearProgressIndicator(value: progress) : null,
-        Container(
-          height: 600,
-          margin: const EdgeInsets.all(10.0),
-          decoration: BoxDecoration(),
-          child: InAppWebView(
-            initialUrl: "http://www.baidu.com",
-            initialHeaders: {},
-            initialOptions: {},
-            onWebViewCreated: (InAppWebViewController controller) {
-              webView = controller;
-            },
-            onLoadStart:
-                (InAppWebViewController controller, String url) {},
-            onProgressChanged:
-                (InAppWebViewController controller, int progress) {
-              setState(() {
-                this.progress = progress / 100;
-              });
-            },
-          ),
-        ),
-          ].where((Object o) => o != null).toList(),
-        ),
-            _buildItemAuthor(context,widget.model),
+            _buildItemAuthor(context, widget.model),
+            (progress != 1.0) ? LinearProgressIndicator(value: progress) : null,
+            Container(
+              height: 600,
+              margin: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(),
+              child: InAppWebView(
+                initialUrl: "http://www.baidu.com",
+                initialHeaders: {},
+                initialOptions: {},
+                onWebViewCreated: (InAppWebViewController controller) {
+                  webView = controller;
+                },
+                onLoadStart: (InAppWebViewController controller, String url) {},
+                onProgressChanged:
+                    (InAppWebViewController controller, int progress) {
+                  setState(() {
+                    this.progress = progress / 100;
+                  });
+                },
+              ),
+            ),
+            _buildItemAuthor(context, widget.model),
           ].where((Object o) => o != null).toList(),
         ),
       ),
