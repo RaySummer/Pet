@@ -104,6 +104,7 @@ class _CirclePageState extends State<CirclePage> {
           fit: BoxFit.cover,
          ),
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
     );
@@ -130,18 +131,12 @@ class _CirclePageState extends State<CirclePage> {
       padding: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
       child: Row(
         children: <Widget>[
-          Container(
+          CachePicture(
             width: 30,
             height: 30,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                '${model.userPic}',
-              ),
-              radius: 40,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-            ),
+            url: '${model.userPic}',
+            fit: BoxFit.cover,
+            borderRadius: 40,
           ),
           Expanded(
             child: Container(
