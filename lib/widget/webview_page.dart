@@ -71,7 +71,6 @@ class _WebViewPageState extends State<WebViewPage> {
                 },
               ),
             ),
-            _buildItemAuthor(context, widget.model),
           ].where((Object o) => o != null).toList(),
         ),
       ),
