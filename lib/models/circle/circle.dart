@@ -33,7 +33,7 @@ class CircleModel extends ItemModel {
   String htmlUrl;
 
   //文章类型
-  String essayType;
+  EssayType essayType;
 
   //发布日期
   @JsonKey(name: "modifiedtime", fromJson: _dateTimefromMilliseconds)
@@ -78,3 +78,23 @@ class CircleModel extends ItemModel {
   static List<Map<String, dynamic>> _mediasToJson(List<MediaModel> models) =>
       models.map((model) => MediaModel.toJson(model)).toList();
 }
+
+enum EssayType {
+  ///纯文字
+  CHARACTERS,
+  ///滑动图片加文字
+  SLIDE_PICTURE,
+  ///九宫格图片
+  NINE_CELL,
+  ///长文章
+  LONG_ESSAY
+
+}
+
+// TODO: i18n处理
+const EssayTypeLocalizedMap = {
+  EssayType.CHARACTERS: "纯文字",
+  EssayType.SLIDE_PICTURE: "滑动图片加文字",
+  EssayType.NINE_CELL: "九宫格图片",
+  EssayType.LONG_ESSAY: "长文章"
+};

@@ -11,57 +11,57 @@ import 'dart:ui' as ui;
 import 'package:permission_handler/permission_handler.dart';
 
 
-class GalleryExample extends StatelessWidget {
-  void open(BuildContext context, final int index) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => GalleryPhotoViewWrapper(
-            galleryItems: galleryItems,
-            backgroundDecoration: const BoxDecoration(
-              color: Colors.black,
-            ),
-            initialIndex: index,
-          ),
-        ));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-              child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      GalleryExampleItemThumbnail(
-                        galleryExampleItem: galleryItems[0],
-                        onTap: () {
-                          open(context, 0);
-                        },
-                      ),
-                      GalleryExampleItemThumbnail(
-                        galleryExampleItem: galleryItems[2],
-                        onTap: () {
-                          open(context, 2);
-                        },
-                      ),
-                      GalleryExampleItemThumbnail(
-                        galleryExampleItem: galleryItems[3],
-                        onTap: () {
-                          open(context, 3);
-                        },
-                      ),
-                    ],
-                  ))),
-        ],
-      ),
-    );
-  }
-}
+//class GalleryExample extends StatelessWidget {
+//  void open(BuildContext context, final int index) {
+//    Navigator.push(
+//        context,
+//        MaterialPageRoute(
+//          builder: (context) => GalleryPhotoViewWrapper(
+//            galleryItems: galleryItems,
+//            backgroundDecoration: const BoxDecoration(
+//              color: Colors.black,
+//            ),
+//            initialIndex: index,
+//          ),
+//        ));
+//  }
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return Scaffold(
+//      body: Column(
+//        crossAxisAlignment: CrossAxisAlignment.stretch,
+//        children: <Widget>[
+//          Expanded(
+//              child: Center(
+//                  child: Row(
+//                    mainAxisAlignment: MainAxisAlignment.center,
+//                    children: <Widget>[
+//                      GalleryExampleItemThumbnail(
+//                        galleryExampleItem: galleryItems[0],
+//                        onTap: () {
+//                          open(context, 0);
+//                        },
+//                      ),
+//                      GalleryExampleItemThumbnail(
+//                        galleryExampleItem: galleryItems[2],
+//                        onTap: () {
+//                          open(context, 2);
+//                        },
+//                      ),
+//                      GalleryExampleItemThumbnail(
+//                        galleryExampleItem: galleryItems[3],
+//                        onTap: () {
+//                          open(context, 3);
+//                        },
+//                      ),
+//                    ],
+//                  ))),
+//        ],
+//      ),
+//    );
+//  }
+//}
 
 class GalleryPhotoViewWrapper extends StatefulWidget {
   GalleryPhotoViewWrapper(
@@ -125,6 +125,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
     final result = await ImageGallerySaver.save(bytes.buffer.asUint8List());
 
     print(result);
+    //todo 增加结果提示
     if(result){
     }else{
     }
@@ -137,7 +138,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
         Navigator.pop(context);
       },
       onLongPress: (){
-        _saved(galleryItems,currentIndex);
+        _saved(widget.galleryItems,currentIndex);
       },
       child: Scaffold(
         body: RepaintBoundary(
@@ -153,7 +154,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
                   PhotoViewGallery.builder(
                     scrollPhysics: const BouncingScrollPhysics(),
                     builder: _buildItem,
-                    itemCount: galleryItems.length,
+                    itemCount: widget.galleryItems.length,
                     loadingChild: widget.loadingChild,
                     backgroundDecoration: widget.backgroundDecoration,
                     pageController: widget.pageController,
@@ -220,22 +221,3 @@ class GalleryExampleItemThumbnail extends StatelessWidget {
   }
 
 }
-
-List<MediaModel> galleryItems = <MediaModel>[
-  MediaModel(
-    name: "tag1",
-    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1561446752&di=31c13611d5076309eb2e1cdc607221f7&src=http://hbimg.b0.upaiyun.com/5eef0ed7e64c1f68661687506388cace446e1a3cb01e5-jFObah_fw658',
-  ),
-  MediaModel(
-    name: "tag2",
-    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561528441494&di=f74fbe2e76a5082d975b4be18cef3a74&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201608%2F03%2F20160803093833_eRyhc.thumb.700_0.jpeg',
-  ),
-  MediaModel(
-    name: "tag3",
-    url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=259655612,4126868174&fm=26&gp=0.jpg',
-  ),
-  MediaModel(
-    name: "tag4",
-    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561457125459&di=0bfd97a9f5865905cea03febd0151622&imgtype=0&src=http%3A%2F%2Fpuui.qpic.cn%2Fqqvideo_ori%2F0%2Fe0860cw6hv8_496_280%2F0',
-  ),
-];

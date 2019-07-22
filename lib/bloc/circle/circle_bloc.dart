@@ -53,6 +53,7 @@ class CircleBloC extends BLoCBase {
                 'url':'',
               },
             ],
+            'essayType':'CHARACTERS'
           }),
           CircleModel.fromJson({
             'userName':'哟嗬嗬',
@@ -74,6 +75,7 @@ class CircleBloC extends BLoCBase {
                 'url':'',
               },
             ],
+            'essayType': 'SLIDE_PICTURE'
           }),
           CircleModel.fromJson({
             'userName':'哇哈哈',
@@ -95,6 +97,7 @@ class CircleBloC extends BLoCBase {
                 'url':'',
               },
             ],
+            'essayType': 'NINE_CELL'
           }),
           CircleModel.fromJson({
             'userName':'哟嗬嗬',
@@ -116,6 +119,7 @@ class CircleBloC extends BLoCBase {
                 'url':'',
               },
             ],
+            'essayType': 'LONG_ESSAY'
           }),
           CircleModel.fromJson({
             'userName':'哇哈哈',
@@ -137,6 +141,7 @@ class CircleBloC extends BLoCBase {
                 'url':'',
               },
             ],
+            'essayType': 'NINE_CELL'
           }),
           CircleModel.fromJson({
             'userName':'哟嗬嗬',
@@ -158,6 +163,7 @@ class CircleBloC extends BLoCBase {
                 'url':'',
               },
             ],
+            'essayType': 'SLIDE_PICTURE'
           }),
         ];
       }));

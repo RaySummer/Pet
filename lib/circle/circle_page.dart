@@ -4,8 +4,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pet/bloc/bloc_provider.dart';
 import 'package:pet/bloc/circle/circle_bloc.dart';
-import 'package:pet/circle/circle_detail_for_images.dart';
+import 'package:pet/circle/circle_detail_for_gallery_images.dart';
 import 'package:pet/models/circle/circle.dart';
+import 'package:pet/widget/cache_picture.dart';
+import 'package:pet/widget/webview_page.dart';
 
 import 'circle_detail_page.dart';
 
@@ -64,12 +66,20 @@ class _CirclePageState extends State<CirclePage> {
     );
   }
 
-  Widget _buildItems(BuildContext context, CircleModel model, int index){
+  Widget _buildItems(BuildContext context, CircleModel model, int index) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(
-          context,MaterialPageRoute(builder: (context) => CircleDetailPage(model: model,)),
-        );
+      onTap: () {
+        if (model.essayType == EssayType.LONG_ESSAY) {
+          Navigator.push(
+            context, MaterialPageRoute(
+            builder: (context) => WebViewPage(title: '详情', model: model,)),
+          );
+        } else {
+          Navigator.push(
+            context, MaterialPageRoute(
+              builder: (context) => CircleDetailPage(model: model,)),
+          );
+        }
       },
       child: Container(
         child: Column(
@@ -88,21 +98,11 @@ class _CirclePageState extends State<CirclePage> {
     return Container(
       margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
       height: index.isEven ? 280 : 200 ,
-      child: CachedNetworkImage(
-          imageUrl: '${model.mediaModel.url}',
+      child: CachePicture(
+          width: MediaQuery.of(context).size.width / 2 - 10,
+          url: '${model.mediaModel.url}',
           fit: BoxFit.cover,
-          placeholder: (context, url) =>
-              SpinKitRing(
-                color: Colors.black12,
-                lineWidth: 2,
-                size: 30.0,
-              ),
-          errorWidget: (context, url, error) =>
-              SpinKitRing(
-                color: Colors.black12,
-                lineWidth: 2,
-                size: 30,
-              )),
+         ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
       ),

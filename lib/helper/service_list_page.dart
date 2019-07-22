@@ -3,6 +3,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:pet/bloc/helper/helper_bloc.dart';
 import 'package:pet/unit/help_types.dart';
 import 'package:pet/unit/swiper_images.dart';
+import 'package:pet/widget/cache_picture.dart';
 
 
 class ServicePage extends StatefulWidget{
@@ -311,10 +312,11 @@ class _ServicePageState extends State<ServicePage>{
           Container(
             width: 60,
             height: 60,
+            child: CachePicture(
+              url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
+              borderRadius: 10,
+            ),
             decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage('http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg')
-              ),
               border: Border.all(
                 color: Colors.black38,
                 width: 0.5,
@@ -409,10 +411,11 @@ class _ServicePageState extends State<ServicePage>{
                 Container(
                   width: 80,
                   height: 80,
+                  child: CachePicture(
+                    url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
+                    borderRadius: 10,
+                  ),
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage('http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg')
-                    ),
                     border: Border.all(
                       color: Colors.black38,
                       width: 0.5,
@@ -423,10 +426,11 @@ class _ServicePageState extends State<ServicePage>{
                 Container(
                   width: 80,
                   height: 80,
+                  child: CachePicture(
+                    url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
+                    borderRadius: 10,
+                  ),
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage('http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg')
-                    ),
                     border: Border.all(
                       color: Colors.black38,
                       width: 0.5,
@@ -437,10 +441,11 @@ class _ServicePageState extends State<ServicePage>{
                 Container(
                   width: 80,
                   height: 80,
+                  child: CachePicture(
+                    url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
+                    borderRadius: 10,
+                  ),
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage('http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg')
-                    ),
                     border: Border.all(
                       color: Colors.black38,
                       width: 0.5,
@@ -451,10 +456,11 @@ class _ServicePageState extends State<ServicePage>{
                 Container(
                   width: 80,
                   height: 80,
+                  child: CachePicture(
+                    url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
+                    borderRadius: 10,
+                  ),
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage('http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg')
-                    ),
                     border: Border.all(
                       color: Colors.black38,
                       width: 0.5,

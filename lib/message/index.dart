@@ -7,6 +7,7 @@ import 'package:pet/bloc/system/progress_indicator.dart';
 import 'package:pet/models/message/message.dart';
 import 'package:pet/models/models.dart';
 import 'package:pet/unit/date_util.dart';
+import 'package:pet/widget/cache_picture.dart';
 import 'package:pet/widget/tabbar_factory.dart';
 
 class MessageIndexPage extends StatefulWidget{
@@ -300,10 +301,9 @@ class _MessageListItemState extends State<MessageListItem> with AutomaticKeepAli
         Container(
           width: 60,
           height: 60,
-          child: CircleAvatar(
-            backgroundColor: Colors.white,
-            backgroundImage: NetworkImage('http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg'),
-            radius: 100.0,
+          child: CachePicture(
+            url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
+            borderRadius: 100,
           ),
         ),
         Container(

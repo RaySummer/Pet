@@ -7,6 +7,7 @@ import 'package:pet/models/helper/helper.dart';
 import 'package:pet/unit/date_util.dart';
 import 'package:pet/unit/help_types.dart';
 import 'package:pet/unit/swiper_images.dart';
+import 'package:pet/widget/cache_picture.dart';
 
 class HelperPage extends StatefulWidget {
   AsyncSnapshot<ListData> snapshot;
@@ -47,7 +48,6 @@ class _HelperPageState extends State<HelperPage> {
   //轮播图
   Widget _buildCarouselPicture() {
     return Container(
-        margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
         width: MediaQuery.of(context).size.width,
         height: 220.0,
         child: Swiper(
@@ -55,7 +55,7 @@ class _HelperPageState extends State<HelperPage> {
           itemCount: 4,
 //          viewportFraction: 0.8,
           itemWidth: MediaQuery.of(context).size.width,
-          itemHeight: 200.0,
+          itemHeight: 220.0,
           layout: SwiperLayout.STACK,
 //          scale: 0.9,
 //          scrollDirection: Axis.horizontal,
@@ -343,10 +343,9 @@ class _HelperPageState extends State<HelperPage> {
           Container(
             width: 30,
             height: 30,
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              backgroundImage: NetworkImage('${model.userPic}'),
-              radius: 100.0,
+            child: CachePicture(
+              url: '${model.userPic}',
+              borderRadius: 100,
             ),
             decoration: BoxDecoration(
               border: Border.all(
@@ -450,22 +449,12 @@ class _HelperPageState extends State<HelperPage> {
       child: Stack(
         alignment: Alignment.bottomRight,
         children: [
-          CachedNetworkImage(
+          CachePicture(
               width: MediaQuery.of(context).size.width,
               height: 200,
-              imageUrl:
-              'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=259655612,4126868174&fm=26&gp=0.jpg',
+              url:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=259655612,4126868174&fm=26&gp=0.jpg',
               fit: BoxFit.cover,
-              placeholder: (context, url) => SpinKitRing(
-                color: Colors.black12,
-                lineWidth: 2,
-                size: 30,
-              ),
-              errorWidget: (context, url, error) => SpinKitRing(
-                color: Colors.black12,
-                lineWidth: 2,
-                size: 30,
-              )
+            borderRadius: 10,
           ),
           Container(
             width: 20,
@@ -480,22 +469,9 @@ class _HelperPageState extends State<HelperPage> {
             ),
             decoration: BoxDecoration(
               color: Colors.black54,
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
-        ],
-      ),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey,
-          width: 1,
-        ),
-        boxShadow: [
-          BoxShadow(
-              color: Colors.black38,
-              offset: Offset(1.0, 1.0),
-              blurRadius: 5.0,
-              spreadRadius: 0.0),
         ],
       ),
     );
