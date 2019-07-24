@@ -9,6 +9,7 @@ import 'package:flutter/rendering.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'dart:ui' as ui;
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pet/widget/toast.dart';
 
 
 //class GalleryExample extends StatelessWidget {
@@ -124,11 +125,8 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
 
     final result = await ImageGallerySaver.save(bytes.buffer.asUint8List());
 
-    print(result);
-    //todo 增加结果提示
-    if(result){
-    }else{
-    }
+    Toast.toast(
+        context, msg: result ? '保存成功' : '保存失败', position: ToastPosition.bottom);
   }
 
   @override
