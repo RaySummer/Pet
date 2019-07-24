@@ -8,6 +8,7 @@ import 'package:pet/unit/date_util.dart';
 import 'package:pet/unit/help_types.dart';
 import 'package:pet/unit/swiper_images.dart';
 import 'package:pet/widget/cache_picture.dart';
+import 'package:pet/widget/video_player.dart';
 
 class HelperPage extends StatefulWidget {
   AsyncSnapshot<ListData> snapshot;
@@ -67,7 +68,13 @@ class _HelperPageState extends State<HelperPage> {
                   color: Colors.black54, activeColor: Colors.white)),
           onTap: (index) {
             //动态读取图片时可以增加H5的链接跳转
-            print('点击了第$index个');
+//            print('点击了第$index个');
+            Navigator.push(
+              context, MaterialPageRoute(
+                builder: (context) => VideoApp()
+            ),
+            );
+
           },
         ),
         decoration: BoxDecoration(
@@ -160,7 +167,7 @@ class _HelperPageState extends State<HelperPage> {
         shrinkWrap:true,
         children: List.generate(typeList.length, (index) {
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+            margin: EdgeInsets.fromLTRB( 10,0,0,10),
             child: Column(
               children: <Widget>[
                 Container(

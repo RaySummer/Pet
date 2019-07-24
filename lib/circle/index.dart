@@ -36,7 +36,6 @@ class _CircleIndexPageState extends State<CircleIndexPage>{
                 '宠物圈子',
               style: TextStyle(
                 color: Colors.black54,
-                fontSize: 20,
               ),
             ),
           ),

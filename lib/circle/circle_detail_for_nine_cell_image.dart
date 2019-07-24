@@ -33,6 +33,7 @@ class _CircleDetailForNineCellImagesState extends State<CircleDetailForNineCellI
 
   Widget _buildPicGridView(){
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
       child: GridView.count(
           shrinkWrap:true,
           physics: NeverScrollableScrollPhysics(),
@@ -57,8 +58,8 @@ class _CircleDetailForNineCellImagesState extends State<CircleDetailForNineCellI
                 margin: EdgeInsets.symmetric(horizontal: 2,vertical: 2),
                 child: CachePicture(
                   url: mediaList[index].url,
-                  width: 100,
-                  height: 100,
+                  width: 80,
+                  height: 80,
                   borderRadius: 8,
                   fit: BoxFit.cover,
                 ),

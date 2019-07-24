@@ -288,11 +288,12 @@ class _ServicePageState extends State<ServicePage>{
 
   Widget _buildItem(){
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
       margin: EdgeInsets.symmetric(vertical: 10,horizontal: 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          _buildItemLocation(),
           _buildItemHead(),
           _buildItemContent(),
           _buildItemBottom(),
@@ -310,8 +311,8 @@ class _ServicePageState extends State<ServicePage>{
       child: Row(
         children: <Widget>[
           Container(
-            width: 60,
-            height: 60,
+            width: 70,
+            height: 70,
             child: CachePicture(
               url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
               borderRadius: 10,
@@ -332,17 +333,15 @@ class _ServicePageState extends State<ServicePage>{
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     children: <Widget>[
-                     Expanded(
-                       child: Container(
-                            child: Text(
-                              '小猫小狗助养中心',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black54,
-                              ),
-                            ),
+                      Container(
+                        child: Text(
+                          '小猫小狗助养中心',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black54,
                           ),
-                     ),
+                        ),
+                      ),
                       Container(
                         margin: EdgeInsets.only(left: 5),
                           width: 15,
@@ -357,18 +356,6 @@ class _ServicePageState extends State<ServicePage>{
                             ),
                           ),
                         ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            '500M',
-                            style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -409,8 +396,8 @@ class _ServicePageState extends State<ServicePage>{
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Container(
-                  width: 80,
-                  height: 80,
+                  width: 60,
+                  height: 60,
                   child: CachePicture(
                     url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
                     borderRadius: 10,
@@ -424,8 +411,8 @@ class _ServicePageState extends State<ServicePage>{
                   ),
                 ),
                 Container(
-                  width: 80,
-                  height: 80,
+                  width: 60,
+                  height: 60,
                   child: CachePicture(
                     url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
                     borderRadius: 10,
@@ -439,8 +426,8 @@ class _ServicePageState extends State<ServicePage>{
                   ),
                 ),
                 Container(
-                  width: 80,
-                  height: 80,
+                  width: 60,
+                  height: 60,
                   child: CachePicture(
                     url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
                     borderRadius: 10,
@@ -454,8 +441,8 @@ class _ServicePageState extends State<ServicePage>{
                   ),
                 ),
                 Container(
-                  width: 80,
-                  height: 80,
+                  width: 60,
+                  height: 60,
                   child: CachePicture(
                     url: 'http://b-ssl.duitang.com/uploads/item/201808/21/20180821215317_kepjr.jpeg',
                     borderRadius: 10,
@@ -482,11 +469,32 @@ class _ServicePageState extends State<ServicePage>{
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Container(
+            alignment: Alignment.centerRight,
             margin: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               '进去看看',
               style: TextStyle(
                 color: Colors.black54,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildItemLocation(){
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.centerRight,
+            child: Text(
+              '500M',
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 16,
               ),
             ),
           ),

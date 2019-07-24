@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pet/my/moment/index.dart';
+import 'package:pet/widget/cache_picture.dart';
 
 
 typedef void ClickAction();
@@ -14,7 +16,7 @@ class _MyIndexPageState extends State<MyIndexPage> {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
-          body: Column(
+          body: ListView(
             children: <Widget>[
               _buildTop(),
               _buildCenterContent(),
@@ -27,7 +29,7 @@ class _MyIndexPageState extends State<MyIndexPage> {
   //头部
   Widget _buildTop() {
     return Container(
-      height: 250,
+      height: 200,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -80,19 +82,19 @@ class _MyIndexPageState extends State<MyIndexPage> {
   //登录时显示
   Widget _buildLogged() {
     return Container(
-      padding: EdgeInsets.fromLTRB(20, 0, 0, 30),
+      padding: EdgeInsets.fromLTRB(10, 0, 0, 30),
       child: Row(
         children: <Widget>[
           Container(
-            height: 80,
+            height: 60,
+            width: 60,
             child: Container(
-              child: CircleAvatar(
-                backgroundColor:Colors.white,
-                foregroundColor: Colors.white,
-                backgroundImage: NetworkImage(
-                  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560921944295&di=e32230ee2f55409fd8f1f22baa37716e&imgtype=0&src=http%3A%2F%2Fs8.sinaimg.cn%2Fbmiddle%2Fb3374092gx6C3cBUW3577%26690',
-                ),
-                radius: 40,
+              child: CachePicture(
+                url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560921944295&di=e32230ee2f55409fd8f1f22baa37716e&imgtype=0&src=http%3A%2F%2Fs8.sinaimg.cn%2Fbmiddle%2Fb3374092gx6C3cBUW3577%26690',
+                width: 80,
+                height: 80,
+                borderRadius: 40,
+                fit: BoxFit.cover,
               ),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black12, width: 0.5),
@@ -166,7 +168,7 @@ class _MyIndexPageState extends State<MyIndexPage> {
           _buildBehavior(
               '我的点赞',
               Icon(
-                Icons.exposure_plus_1,
+                Icons.favorite,
                 color: Colors.black54,
                 size: 20,
               )),
@@ -243,7 +245,7 @@ class _MyIndexPageState extends State<MyIndexPage> {
 
   Widget _buildCenterContent(){
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 30),
+      padding: EdgeInsets.symmetric(vertical: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
@@ -252,6 +254,8 @@ class _MyIndexPageState extends State<MyIndexPage> {
           _buildMenu(Icon(Icons.group,color: Colors.black54),'我的好友',null),
           _buildHorizontalLine(),
           _buildMenu(Icon(Icons.pets,color: Colors.black54),'我的宠物',null),
+          _buildHorizontalLine(),
+          _buildMenu(Icon(Icons.timeline,color: Colors.black54),'宠物时光',null),
           _buildHorizontalLine(),
           _buildMenu(Icon(Icons.event,color: Colors.black54),'备忘提醒',null),
           _buildHorizontalLine(),
@@ -266,9 +270,21 @@ class _MyIndexPageState extends State<MyIndexPage> {
     );
   }
 
+  jumpPage(){
+    Navigator.push(
+      context, MaterialPageRoute(
+        builder: (context) => PetMomentPage()),
+    );
+  }
+
   Widget _buildMenu(Icon icon,String text,ClickAction action){
     return GestureDetector(
-      onTap: action,
+      onTap: (){
+        Navigator.push(
+          context, MaterialPageRoute(
+            builder: (context) => PetMomentPage()),
+        );
+      },
       child: Container(
         height: 50,
         child: Row(

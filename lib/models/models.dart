@@ -107,5 +107,5 @@ class MediaModel extends ItemModel{
   static Map<String, dynamic> toJson(MediaModel model) =>
       _$MediaModelToJson(model);
 
-
 }
+

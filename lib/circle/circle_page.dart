@@ -1,10 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pet/bloc/bloc_provider.dart';
 import 'package:pet/bloc/circle/circle_bloc.dart';
-import 'package:pet/circle/circle_detail_for_gallery_images.dart';
 import 'package:pet/models/circle/circle.dart';
 import 'package:pet/widget/cache_picture.dart';
 import 'package:pet/widget/webview_page.dart';
@@ -55,13 +52,17 @@ class _CirclePageState extends State<CirclePage> {
             itemCount: widget.snapshot.data.length,
             itemBuilder: (BuildContext context, int index) =>
                 Container(
+                  child: _buildItems(
+                      context, widget.snapshot.data[index], index),
+                  decoration: BoxDecoration(
                     color: Colors.white,
-                    child: _buildItems(context,widget.snapshot.data[index],index)
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
             staggeredTileBuilder: (int index) =>
-                StaggeredTile.count(2, index.isEven ? 3.8 : 3),
-            mainAxisSpacing: 4.0,
-            crossAxisSpacing: 4.0,
+                StaggeredTile.count(2, index.isEven ? 3.8 : 3.2),
+            mainAxisSpacing: 5.0,
+            crossAxisSpacing: 5.0,
           )),
     );
   }
@@ -83,10 +84,9 @@ class _CirclePageState extends State<CirclePage> {
       },
       child: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            _buildItemImage(context,model,index),
-            _buildItemTitle(context,model),
+            Expanded(child: _buildItemImage(context,model,index),flex: 5,),
+            Expanded(child: _buildItemTitle(context,model),flex: 1,),
             _buildItemAuthor(context,model),
           ],
         ),
@@ -96,15 +96,15 @@ class _CirclePageState extends State<CirclePage> {
 
   Widget _buildItemImage(BuildContext context,CircleModel model,int index){
     return Container(
-      margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-      height: index.isEven ? 280 : 200 ,
+      height: index.isEven ? 250  : 200,
       child: CachePicture(
           width: MediaQuery.of(context).size.width / 2 - 10,
+          height: index.isEven ? 250  : 200,
           url: '${model.mediaModel.url}',
           fit: BoxFit.cover,
+        borderRadius: 10,
          ),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
     );
@@ -112,10 +112,12 @@ class _CirclePageState extends State<CirclePage> {
 
   Widget _buildItemTitle(BuildContext context,CircleModel model){
     return Container(
+      height: 35,
       margin: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
       alignment: Alignment.centerLeft,
       child: Text(
         '${model.title}',
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
@@ -143,6 +145,7 @@ class _CirclePageState extends State<CirclePage> {
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: Text(
                 '${model.userName}',
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black54,
