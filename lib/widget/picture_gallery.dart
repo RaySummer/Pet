@@ -97,7 +97,6 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
     currentIndex = widget.initialIndex;
     super.initState();
     var permission = PermissionHandler().checkPermissionStatus(PermissionGroup.storage);
-    print("permission status is " + permission.toString());
     PermissionHandler().requestPermissions(<PermissionGroup>[
       PermissionGroup.storage, // 在这里添加需要的权限
     ]);
@@ -112,11 +111,10 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
   }
 
   void _saved(List<MediaModel> list, int index) async {
-    RenderRepaintBoundary boundary =
-    _globalKey.currentContext.findRenderObject();
-    ui.Image image = await boundary.toImage();
-    ByteData byteData =
-    await image.toByteData(format: ui.ImageByteFormat.png);
+//    RenderRepaintBoundary boundary =
+//    _globalKey.currentContext.findRenderObject();
+//    ui.Image image = await boundary.toImage();
+//    ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
 //    final result = await ImageGallerySaver.save(byteData.buffer.asUint8List());
 
     Uri uri = Uri();
@@ -136,7 +134,8 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
         Navigator.pop(context);
       },
       onLongPress: (){
-        _saved(widget.galleryItems,currentIndex);
+        _showMajorCategorySelect();
+//        _saved(widget.galleryItems,currentIndex);
       },
       child: Scaffold(
         body: RepaintBoundary(
@@ -170,6 +169,33 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
               )),
         ),
       ),
+    );
+  }
+
+  void _showMajorCategorySelect() async {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return GestureDetector(
+          onTap: (){
+            _saved(widget.galleryItems,currentIndex);
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  '保存图片',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 16
+                  ),
+                )
+              ],
+            )
+          ),
+        );
+      },
     );
   }
 
